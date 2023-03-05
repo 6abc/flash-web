@@ -1,13 +1,40 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 # IN OUR EXAMPLE WE LABLED IT AS [main.py]
 main = Flask(__name__)
+
+JOBS = [{
+  'id': 1,
+  'title': 'Data Analyst',
+  'location': 'Bangaluru, India',
+  'salary': 'Rs. 10,00,000.00'
+}, {
+  'id': 2,
+  'title': 'Data Scientist',
+  'location': 'Delhi, India',
+  'salary': 'Rs. 15,00,000.00'
+}, {
+  'id': 3,
+  'title': 'Frontend Engineer',
+  'location': 'Remote',
+  'salary': 'Rs. 12,00,000.00'
+}, {
+  'id': 4,
+  'title': 'Backend Engineer',
+  'location': 'San Francisco, USA',
+  'salary': '$ 120,000.00'
+}]
 
 
 # IN OUR EXAMPLE WE LABLED IT AS [main.py]
 @main.route("/")
 def hello_world():
-  return render_template('home.html')
+  return render_template('home.html', jobs_list=JOBS, company_name='Ashish')
+
+
+@main.route("/api/jobs")
+def api_info():
+  return jsonify(JOBS)
 
 
 #_______________________________________________________________________

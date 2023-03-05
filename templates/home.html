@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<!--   <style>
     h1  /* for TAG Name */
     {
       font-size: 40px;
@@ -37,24 +37,36 @@
       max-width: 720px;
       margin: 0 auto 0 auto; /* Top(0) Left(auto) Bottom(0) Right(auto) */
     }
+  </style> -->
+  <style>
+    #banner
+    {
+      height:360px;
+      width: 100%;
+      
+    }
   </style>
-  <title>FLASH WEB</title>
+  <title>Ashish Careers</title>
 </head>
 <body>
-  <div id="container">
-    <h1>FLASH WEB</h1>
-    <img id="banner" src="/static/banner.jpg" alt="">
-    <h2>About Flash Web</h2>
-    <p class="bodytext">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta rerum, quidem unde temporibus odit veritatis sunt labore error aperiam, deserunt quos optio, soluta repudiandae. Doloribus eveniet at hic fugit nesciunt.
+  <div class="container">
+    <h1 class="text-center mt-2 mb-4">{{company_name}} Careers</h1>
+    <img id="banner" class="img-fluid" src="/static/banner.jpg" alt="">
+    <h2 class="text-center mt-2 mb-4">About Flash Web</h2>
+    <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta rerum, quidem unde temporibus odit veritatis sunt labore error aperiam, deserunt quos optio, soluta repudiandae. Doloribus eveniet at hic fugit nesciunt.
     Nihil distinctio dolorum, ratione cumque quibusdam nobis, illo fugit illum laudantium molestiae ut soluta quae iusto. Maiores saepe in obcaecati mollitia, sed, ea neque facilis quo doloremque vero magni quos?
     Modi quae, possimus quas illo ullam dicta! Assumenda, laborum. Quod sint similique quis itaque fuga libero laboriosam iste quam, sit autem praesentium ipsum aut qui explicabo exercitationem illum corporis perferendis?
     Voluptas est accusamus architecto quisquam voluptatem, sequi non eius explicabo nobis dolore hic labore placeat maiores! Similique dignissimos molestiae rem, vitae exercitationem ullam doloremque in doloribus eaque ipsum magni impedit.
     Minus quae soluta corporis, est veniam magnam et porro reprehenderit assumenda in eum facilis autem perferendis nisi dolore officia cum aut qui ea sapiente, doloremque vel deleniti. Perferendis, nulla corporis!</p>
-    <h2>Open Flash webs</h2>
-    <p class="bodytext">TODO - Show Flash Web sub here</p>
-    <div style="text-align:center;">
-      <button>Contact US</button>
-      <p><sup>©</sup> 2023 Ashish Thakur</p>
+    <h2 class="text-center mt-2 mb-4">Open Positions</h2>
+    <div>
+      {% for list_of_job in jobs_list %}
+        {% include 'jobitem.html' %}
+      {% endfor %}  
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg">Contact US</button>
+      <p class="mt-4"><sup>©</sup> 2023 Ashish Thakur</p>
     </div>
   </div>
 </body>
