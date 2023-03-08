@@ -10,10 +10,10 @@ def hello_world():
   jobs = load_jobs_from_db()
   return render_template('home.html', jobs=jobs, company_name='Ashish')
 
-# @main.route("/api/jobs")
-# def api_info():
-# # jobs = load_jobs_from_db()
-#   return jsonify(load_jobs_from_db())
+@main.route("/api/jobs")
+def api_info():
+  jobs = load_jobs_from_db()
+  return jsonify(jobs)
 
 #_______________________________________________________________________
 # Save it as [hello.py] or something similar. Make sure to not call your application flask.py because this would conflict with Flask itself.
