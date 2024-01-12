@@ -6,7 +6,10 @@
 ```
 2. ## Create a Model:** Create a file named `models.py` in the `crud_app` directory:
 ```sh
-python from django.db import models class Person(models.Model): name = models.CharField(max_length=30) age = models.IntegerField()
+from django.db import models
+class Person(models.Model):
+   name = models.CharField(max_length=30)
+   age = models.IntegerField()
 ```
 3. ## Create a Migration:** Run the following command to create a migration:
 ```sh
@@ -18,11 +21,44 @@ python manage.py migrate
 ```
 5. ##Create a Form:** Create a file named `forms.py` in the `crud_app` directory:
 ```sh
-python from django import forms from .models import Person class PersonForm(forms.ModelForm): class Meta: model = Person fields = ['name', 'age']
+from django import forms
+from .models import Person
+class PersonForm(forms.ModelForm):
+   class Meta: model = Person fields = ['name', 'age']
 ```
 6. ##Create a View:** Create a file named `views.py` in the `crud_app` directory:
 ```sh
-python from django.shortcuts import render, redirect from django.urls import reverse_lazy from .models import Person from .forms import PersonForm def index(request): people = Person.objects.all() return render(request, 'index.html', {'people': people}) def create(request): if request.method == 'POST': form = PersonForm(request.POST) if form.is_valid(): form.save() return redirect(reverse_lazy('index')) else: form = PersonForm() return render(request, 'create.html', {'form': form}) def update(request, pk): person = Person.objects.get(pk=pk) if request.method == 'POST': form = PersonForm(request.POST, instance=person) if form.is_valid(): form.save() return redirect(reverse_lazy('index')) else: form = PersonForm(instance=person) return render(request, 'update.html', {'form': form}) def delete(request, pk): person = Person.objects.get(pk=pk) if request.method == 'POST': person.delete() return redirect(reverse_lazy('index')) return render(request, 'delete.html', {'person': person})
+from django.shortcuts import render, redirect from django.urls
+import reverse_lazy from .models
+import Person from .forms
+import PersonForm
+
+def index(request):
+   people = Person.objects.all()
+   return render(request, 'index.html', {'people': people})
+def create(request):
+   if request.method == 'POST':
+      form = PersonForm(request.POST)
+         if form.is_valid():
+            form.save()
+         return redirect(reverse_lazy('index')) else: form = PersonForm() return render(request, 'create.html', {'form': form})
+
+def update(request, pk):
+   person = Person.objects.get(pk=pk)
+      if request.method == 'POST':
+         form = PersonForm(request.POST, instance=person)
+            if form.is_valid():
+               form.save()
+            return redirect(reverse_lazy('index'))
+            else:
+               form = PersonForm(instance=person)
+            return render(request, 'update.html', {'form': form})
+def delete(request, pk):
+   person = Person.objects.get(pk=pk)
+   if request.method == 'POST':
+      person.delete()
+   return redirect(reverse_lazy('index'))
+   return render(request, 'delete.html', {'person': person})
 ``` 
 7. ##Create Templates:** Create the following templates in the `templates` directory: * `index.html`:
 ```sh
